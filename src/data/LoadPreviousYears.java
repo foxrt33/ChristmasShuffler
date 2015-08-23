@@ -10,11 +10,9 @@ import java.util.Map;
 import com.opencsv.CSVReader;
 
 import model.PreviousGiftees;
+import util.Utility;
 
 public class LoadPreviousYears {
-
-	public static final int YEARS_TO_CHECK = 3;
-	private static final String filePreviousYears = "resources/previousYears.txt";
 	
 	public static Map<String, List<PreviousGiftees>> getPreviousGiftees() {
 		Map<String, List<PreviousGiftees>> previousGiftees = new HashMap<String, List<PreviousGiftees>>();
@@ -22,7 +20,7 @@ public class LoadPreviousYears {
 		
 		int curYear = getCurrentYear();
 		try {		
-			reader = LoadCSV.getFile(filePreviousYears);
+			reader = LoadCSV.getFile(Utility.CSV_PREV_GIFTEES);
 			List<PreviousGiftees> pg;
 			int counter = 0;
 			for (String[] line : reader.readAll()) {
@@ -31,7 +29,7 @@ public class LoadPreviousYears {
 					int year = Integer.parseInt(line[1]);
 					String giftee = line[2];
 					
-					if (curYear - year <= YEARS_TO_CHECK) {
+					if (curYear - year <= Utility.YEARS_TO_CHECK) {
 						PreviousGiftees prevGiftee = new PreviousGiftees(gifter, giftee, year);		
 						pg = previousGiftees.get(gifter);
 						if (pg != null) {

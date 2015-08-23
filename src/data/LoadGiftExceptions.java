@@ -6,17 +6,16 @@ import java.util.List;
 import com.opencsv.CSVReader;
 
 import model.GiftException;
+import util.Utility;
 
 public class LoadGiftExceptions {
-
-	private static String exceptionFile = "resources/exceptions.txt";
 	
 	public static List<GiftException> getGiftExceptions() throws Exception {
 		List<GiftException> exceptions = new ArrayList<GiftException>();
 		CSVReader reader = null;
 		
 		try {
-			reader = LoadCSV.getFile(exceptionFile);
+			reader = LoadCSV.getFile(Utility.CSV_EXCEPTIONS);
 			
 			int counter = 0;  //skip header
 			

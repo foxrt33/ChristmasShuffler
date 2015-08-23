@@ -7,16 +7,15 @@ import java.util.List;
 import com.opencsv.CSVReader;
 
 import model.Person;
+import util.Utility;
 
 public class LoadPeople {
-
-	private static String peopleFile = "resources/people.txt";
 	
 	public static List<Person> getPeople() throws Exception {
 		List<Person> people = new ArrayList<Person>();
 		CSVReader reader = null;
 		try {
-			reader = LoadCSV.getFile(peopleFile);
+			reader = LoadCSV.getFile(Utility.CSV_PEOPLE);
 			
 			int counter = 0;
 			

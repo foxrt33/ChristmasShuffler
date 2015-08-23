@@ -10,13 +10,12 @@ import data.LoadPeople;
 import data.SaveOutput;
 import model.Gifter;
 import model.Person;
+import util.Utility;
 
 public class Shuffler {
 	
-	public static final String PREVIOUS_GIFTERS_FILE_NAME = "resources/previousYears.txt";
-	
 	private static void saveOutput(String fileName, List<Gifter> gifters) throws Exception {
-		SaveOutput so = new SaveOutput(PREVIOUS_GIFTERS_FILE_NAME, fileName);
+		SaveOutput so = new SaveOutput(Utility.CSV_PREV_GIFTEES, fileName);
 		List<String[]> giftArray = new ArrayList<String[]>();
 		for (Gifter g : gifters) {
 			String[] arr = new String[3];
@@ -68,7 +67,7 @@ public class Shuffler {
 				System.out.println(g.getName() + " : " + g.getCurrentGiftee());
 			}
 			
-			saveOutput(PREVIOUS_GIFTERS_FILE_NAME, gifters);
+			saveOutput(Utility.CSV_PREV_GIFTEES, gifters);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
