@@ -1,0 +1,23 @@
+package dev.fox.model;
+
+public class Person {
+	
+	private String name;
+	
+	public Person (String name) {
+		this.setName(name);
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return getName();
+	}
+}

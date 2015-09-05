@@ -1,0 +1,32 @@
+//task hello << {
+//	println 'Hello world!'
+//}
+//task howdy(dependsOn: 'hello') << {
+//	println 'Hey y\'all'
+//}
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+main 
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+        }
+        lib {
+        	srcDir 'lib'
+        }
+ 	}
+}
+
+//jar {
+//	manifest {
+//		attributes 'Main-class': 'shuffle.Shuffler'
+//	}
+//}
