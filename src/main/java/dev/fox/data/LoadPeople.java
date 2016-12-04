@@ -11,11 +11,16 @@ import dev.fox.util.Utility;
 
 public class LoadPeople {
 	
-	public static List<Person> getPeople() throws Exception {
+	public static List<Person> getPeople(Utility.ENV env) throws Exception {
 		List<Person> people = new ArrayList<Person>();
 		CSVReader reader = null;
 		try {
-			reader = LoadCSV.getFile(Utility.CSV_PEOPLE);
+			if (env == Utility.ENV.DEV) {
+				reader = LoadCSV.getFile(Utility.DEV_PATH + Utility.CSV_PEOPLE);
+			} else {
+				reader = LoadCSV.getFile(Utility.PROD_PATH + Utility.CSV_PEOPLE);
+			}
+			
 			
 			int counter = 0;
 			

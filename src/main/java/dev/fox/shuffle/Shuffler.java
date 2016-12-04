@@ -14,8 +14,10 @@ import dev.fox.util.Utility;
 
 public class Shuffler {
 	
+	private static Utility.ENV env;
+	
 	private static void saveOutput(String fileName, List<Gifter> gifters) throws Exception {
-		SaveOutput so = new SaveOutput(Utility.CSV_PREV_GIFTEES, fileName);
+		SaveOutput so = new SaveOutput(fileName, fileName);
 		List<String[]> giftArray = new ArrayList<String[]>();
 		for (Gifter g : gifters) {
 			String[] arr = new String[3];
@@ -57,8 +59,12 @@ public class Shuffler {
 	public static void main(String[] args) {
 		try {
 			
-			List<Person> people = LoadPeople.getPeople();			
-			List<Gifter> gifters = LoadCSV.getGifters();	
+			if (args.length > 0) {
+				env = Utility.ENV.DEV;
+			}
+			
+			List<Person> people = LoadPeople.getPeople(env);			
+			List<Gifter> gifters = LoadCSV.getGifters(env);	
 			
 			shuffle(people, gifters);
 			updateGifterList(people, gifters);
@@ -67,7 +73,8 @@ public class Shuffler {
 				System.out.println(g.getName() + " : " + g.getCurrentGiftee());
 			}
 			
-			saveOutput(Utility.CSV_PREV_GIFTEES, gifters);
+			String fileName = (env == Utility.ENV.DEV ? Utility.DEV_PATH : Utility.PROD_PATH) + Utility.CSV_PREV_GIFTEES;
+			saveOutput(fileName, gifters);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

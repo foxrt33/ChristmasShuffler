@@ -11,6 +11,7 @@ import dev.fox.model.GiftException;
 import dev.fox.model.Gifter;
 import dev.fox.model.Person;
 import dev.fox.model.PreviousGiftees;
+import dev.fox.util.Utility;
 
 public class LoadCSV {
 
@@ -22,14 +23,14 @@ public class LoadCSV {
 		return new CSVReader(new FileReader(path), ';', '"');
 	}
 	
-	private static void loadData() throws Exception {
-		people = LoadPeople.getPeople();
-		exceptions = LoadGiftExceptions.getGiftExceptions();
-		gifterToPrevGiftees = LoadPreviousYears.getPreviousGiftees();
+	private static void loadData(Utility.ENV env) throws Exception {
+		people = LoadPeople.getPeople(env);
+		exceptions = LoadGiftExceptions.getGiftExceptions(env);
+		gifterToPrevGiftees = LoadPreviousYears.getPreviousGiftees(env);
 	}
 	
-	public static List<Gifter> getGifters() throws Exception {
-		loadData();
+	public static List<Gifter> getGifters(Utility.ENV env) throws Exception {
+		loadData(env);
 		return configureGifters();
 	}
 	
