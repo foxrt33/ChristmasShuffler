@@ -27,20 +27,23 @@ public class Shuffler {
 		so.save(giftArray);
 	}
 	
-	private static void updateGifterList(List<Person> people, List<Gifter> gifters) {
+	public static void updateGifterList(List<Person> people, List<Gifter> gifters) {
 		for (int i=0; i<people.size(); i++) {
 			gifters.get(i).setCurrentGiftee(people.get(i).getName());
 		}
 	}
 	
-	private static void shuffle(List<Person> people, List<Gifter> gifters) {
+	public static List<Person> shuffle(List<Person> people, List<Gifter> gifters) {
 		Collections.shuffle(people);
 		if (hasException(people, gifters)) {
-			shuffle(people, gifters);
+			return shuffle(people, gifters);
+		} else {
+			List<Person> shuffledPeeps = people;
+			return shuffledPeeps;
 		}
 	}
 	
-	private static boolean hasException(List<Person> people, List<Gifter> gifters) {
+	public static boolean hasException(List<Person> people, List<Gifter> gifters) {
 
 		for (int i=0; i<gifters.size(); i++) {
 			Gifter gifter = gifters.get(i);
