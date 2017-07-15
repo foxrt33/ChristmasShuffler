@@ -10,17 +10,12 @@ import dev.fox.util.Utility;
 
 public class LoadGiftExceptions {
 	
-	public static List<GiftException> getGiftExceptions(Utility.ENV env) throws Exception {
+	public static List<GiftException> getGiftExceptions() throws Exception {
 		List<GiftException> exceptions = new ArrayList<GiftException>();
 		CSVReader reader = null;
 		
 		try {
-			if (env == Utility.ENV.DEV) {
-				reader = LoadCSV.getFile(Utility.DEV_PATH + Utility.CSV_EXCEPTIONS);
-			} else {
-				reader = LoadCSV.getFile(Utility.PROD_PATH + Utility.CSV_EXCEPTIONS);
-			}
-			
+			reader = LoadCSV.getFile(Utility.CSV_EXCEPTIONS);
 			
 			int counter = 0;  //skip header
 			
