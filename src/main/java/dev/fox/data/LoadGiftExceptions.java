@@ -15,7 +15,7 @@ public class LoadGiftExceptions {
 		CSVReader reader = null;
 		
 		try {
-			reader = LoadCSV.getFile(Utility.CSV_EXCEPTIONS);
+			reader = LoadCSV.getCSVLoader().getFile(Utility.CSV_EXCEPTIONS);
 			
 			int counter = 0;  //skip header
 			

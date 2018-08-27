@@ -15,7 +15,7 @@ public class LoadPeople {
 		List<Person> people = new ArrayList<Person>();
 		CSVReader reader = null;
 		try {
-			reader = LoadCSV.getFile(Utility.CSV_PEOPLE);
+			reader = LoadCSV.getCSVLoader().getFile(Utility.CSV_PEOPLE);
 			
 			int counter = 0;
 			

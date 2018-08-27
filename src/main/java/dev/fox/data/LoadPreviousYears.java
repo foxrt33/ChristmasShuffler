@@ -14,13 +14,15 @@ import dev.fox.util.Utility;
 
 public class LoadPreviousYears {
 	
+	
+	
 	public static Map<String, List<PreviousGiftees>> getPreviousGiftees() {
 		Map<String, List<PreviousGiftees>> previousGiftees = new HashMap<String, List<PreviousGiftees>>();
 		CSVReader reader = null;
 		
 		int curYear = getCurrentYear();
 		try {		
-			reader = LoadCSV.getFile(Utility.CSV_PREV_GIFTEES);
+			reader = LoadCSV.getCSVLoader().getFile(Utility.CSV_PREV_GIFTEES);
 			List<PreviousGiftees> pg;
 			int counter = 0;
 			for (String[] line : reader.readAll()) {

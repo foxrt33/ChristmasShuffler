@@ -14,9 +14,9 @@ public class TestLoadPreviousYears {
 	@Test
 	public void test_loadPreviousYears() {
 		Map<String, List<PreviousGiftees>> pg = LoadPreviousYears.getPreviousGiftees();
-		List<PreviousGiftees> list = pg.get("Rose");
+		List<PreviousGiftees> list = pg.get("Joe");
 		System.out.println(list.get(0).getGiftee());
-		assertTrue(list.get(0).getGiftee().equals("Janet"));
+		assertTrue(list.get(0).getGiftee().equals("Troy"));
 		
 	}
 }

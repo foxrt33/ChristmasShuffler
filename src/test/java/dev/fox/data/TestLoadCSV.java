@@ -11,7 +11,7 @@ public class TestLoadCSV {
 	@Test
 	public void test_getFile() {
 		try {
-			CSVReader reader = LoadCSV.getFile("/Users/rosefox/Documents/xmas/people.txt");
+			CSVReader reader = LoadCSV.getCSVLoader().getFile("output/people.txt");
 			assertNotNull(reader);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

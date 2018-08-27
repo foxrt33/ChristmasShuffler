@@ -1,6 +1,8 @@
 package dev.fox.data;
 
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,15 +13,27 @@ import dev.fox.model.GiftException;
 import dev.fox.model.Gifter;
 import dev.fox.model.Person;
 import dev.fox.model.PreviousGiftees;
+import dev.fox.util.Utility;
 
 public class LoadCSV {
 
 	private static List<Person> people;
 	private static List<GiftException> exceptions;
 	private static Map<String, List<PreviousGiftees>> gifterToPrevGiftees;
+	private static LoadCSV loader = null;
+	private LoadCSV() {}
 	
-	public static CSVReader getFile(String path) throws Exception {
-		return new CSVReader(new FileReader(path), ';', '"');
+	public static LoadCSV getCSVLoader() {
+		if (loader == null) {
+			loader = new LoadCSV();
+		}
+		return loader;
+	}
+	
+	public CSVReader getFile(String path) throws Exception {
+		InputStream is = getClass().getClassLoader()
+                .getResourceAsStream(path);
+		return new CSVReader(new InputStreamReader(is), Utility.DELIMITER);
 	}
 	
 	private static void loadData() throws Exception {
